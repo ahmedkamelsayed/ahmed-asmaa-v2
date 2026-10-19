@@ -52,7 +52,7 @@ export const config = {
 
   // Live address once deployed, e.g. 'https://<username>.github.io/<repo>/'.
   // Needed so link previews (WhatsApp etc.) get an absolute image URL.
-  siteUrl: 'https://ahmedkamelsayed.github.io/ahmed-asmaa/',
+  siteUrl: 'https://ahmedkamelsayed.github.io/ahmed-asmaa-v2/',
 
   // ---------------------------------------------------------------
   //  Wording for each version. Change text freely.
