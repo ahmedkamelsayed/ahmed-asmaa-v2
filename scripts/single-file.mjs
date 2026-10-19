@@ -30,7 +30,7 @@ await mkdir(outDir, { recursive: true });
 for (const page of PAGES) {
   let html = await readFile(path.join(dist, page.src), 'utf8');
 
-  // CSS: keep only the font faces this language uses (woff2), inlined.
+  // CSS: keep only the font faces this language uses (woff2); fonts and images inlined.
   const cssTags = [...html.matchAll(/<link rel="stylesheet"[^>]*href="\.\/(assets\/[^"]+\.css)"[^>]*>/g)];
   for (const [tag, href] of cssTags) {
     let css = await readFile(path.join(dist, href), 'utf8');
@@ -41,7 +41,7 @@ for (const page of PAGES) {
       return keep ? face : '';
     });
     css = css.replace(/,\s*url\([^)]+\.woff\)\s*format\(["']?woff["']?\)/g, '');
-    for (const [, ref] of [...css.matchAll(/url\((\.\/[^)]+\.woff2)\)/g)]) {
+    for (const [, ref] of [...css.matchAll(/url\((\.\/[^)]+\.(?:woff2|jpe?g|png|webp))\)/g)]) {
       css = css.replaceAll(ref, await dataUri(path.join(dist, 'assets', ref)));
     }
     html = html.replace(tag, () => `<style>${css}</style>`);
