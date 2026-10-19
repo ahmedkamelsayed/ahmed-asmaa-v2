@@ -182,29 +182,32 @@ ul {
   transform: scaleX(-1);
 }
 
-/* ---------- language switch ---------- */
+/* ---------- language switch (quiet link at the very end of the page) ---------- */
 
 .lang-switch {
-  position: absolute;
-  z-index: 2;
-  top: max(1rem, env(safe-area-inset-top));
-  right: max(1rem, env(safe-area-inset-right));
   display: inline-flex;
   align-items: center;
-  min-height: 40px;
-  padding: 0.25rem 1rem;
-  border: 1px solid rgba(179, 144, 98, 0.55);
-  border-radius: 999px;
-  background: rgba(255, 253, 249, 0.85);
+  gap: 0.7rem;
+  min-height: 44px;
+  margin-top: 1.2rem;
   color: var(--rose-deep);
   font-size: 1rem;
   line-height: 1.4;
   text-decoration: none;
-  transition: background-color 0.3s var(--ease);
 }
 
-.lang-switch:hover {
-  background: var(--blush-light);
+.lang-switch::before,
+.lang-switch::after {
+  content: '';
+  width: 1.6rem;
+  height: 1px;
+  background: rgba(179, 144, 98, 0.6);
+  transition: width 0.3s var(--ease);
+}
+
+.lang-switch:hover::before,
+.lang-switch:hover::after {
+  width: 2.4rem;
 }
 
 .lang-switch[lang='ar'] {

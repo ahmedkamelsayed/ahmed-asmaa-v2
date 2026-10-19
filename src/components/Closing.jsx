@@ -14,6 +14,9 @@ export default function Closing() {
       <Divider className="reveal" />
       <SaveInvitation />
       <p className="closing__date">{dateNumeric(lang)}</p>
+      <a className="lang-switch" href={t.switchTo.href} hrefLang={t.switchTo.lang} lang={t.switchTo.lang}>
+        {t.switchTo.label}
+      </a>
     </footer>
   );
 }

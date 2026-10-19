@@ -6,9 +6,6 @@ export default function Cover() {
   const { lang, t } = useLang();
   return (
     <header className="cover">
-      <a className="lang-switch" href={t.switchTo.href} hrefLang={t.switchTo.lang} lang={t.switchTo.lang}>
-        {t.switchTo.label}
-      </a>
       <FloralSprig className="cover__floral cover__floral--top" />
       <FloralSprig className="cover__floral cover__floral--bottom" />
 
