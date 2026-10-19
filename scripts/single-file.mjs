@@ -53,6 +53,11 @@ for (const page of PAGES) {
   for (const [tag, src] of jsTags) {
     let js = await readFile(path.join(dist, src), 'utf8');
     if (/^import\s|\bimport\(/m.test(js)) throw new Error(`${src} imports other chunks; cannot inline`);
+    // The song is large: embed it once (in the page's <audio>) and let the
+    // script read it from there instead of carrying a second copy.
+    if (config.music.src) {
+      js = js.replaceAll(`"${config.music.src}"`, '(document.querySelector("audio")?.getAttribute("src")||"")');
+    }
     js = (await inlineMedia(js)).replace(/<\/script/gi, '<\\/script');
     html = html.replace(tag, () => `<script type="module">${js}</script>`);
   }

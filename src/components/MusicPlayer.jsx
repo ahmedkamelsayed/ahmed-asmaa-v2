@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLang } from '../lib/lang.js';
 
-// Optional background music. Never autoplays — playback starts only
-// when a guest taps the button.
-export default function MusicPlayer({ src }) {
+// Optional background music. Never plays before a user gesture: it starts
+// when a guest taps the button or, with `startOnFirstTap`, on their first
+// tap/click/key anywhere on the page.
+export default function MusicPlayer({ src, startOnFirstTap = false }) {
   const { t } = useLang();
   const m = t.music;
   const audioRef = useRef(null);
@@ -28,6 +29,25 @@ export default function MusicPlayer({ src }) {
       audio.pause();
     };
   }, [m.failed]);
+
+  // First gesture anywhere starts the music once (taps on the music button
+  // itself are left to its own toggle).
+  useEffect(() => {
+    if (!startOnFirstTap) return undefined;
+    const events = ['pointerup', 'touchend', 'keydown'];
+    const stop = () => events.forEach((e) => window.removeEventListener(e, start, true));
+    function start(e) {
+      if (e.target instanceof Element && e.target.closest('.music')) {
+        stop();
+        return;
+      }
+      stop();
+      const audio = audioRef.current;
+      if (audio.paused) audio.play().catch(() => {});
+    }
+    events.forEach((e) => window.addEventListener(e, start, true));
+    return stop;
+  }, [startOnFirstTap]);
 
   useEffect(() => {
     if (!message) return undefined;
@@ -62,7 +82,7 @@ export default function MusicPlayer({ src }) {
 
   return (
     <div className="music">
-      <audio ref={audioRef} src={src} loop preload="none" />
+      <audio ref={audioRef} src={src} loop preload={startOnFirstTap ? 'auto' : 'none'} />
       {message && <p className="music__msg" role="status">{message}</p>}
       <button
         type="button"

@@ -58,7 +58,7 @@ export default function App({ lang }) {
         <Location />
       </main>
       <Closing />
-      {config.music.src && <MusicPlayer src={config.music.src} />}
+      {config.music.src && <MusicPlayer src={config.music.src} startOnFirstTap={config.music.startOnFirstTap} />}
     </LangContext.Provider>
   );
 }
