@@ -48,9 +48,9 @@ export const config = {
   // src: 'audio/our-song.mp3'
   music: {
     src: 'audio/ya-leila-beida.mp3',
-    // Start on the guest's first tap/click/key anywhere on the page
-    // (browsers never allow sound before that).
-    startOnFirstTap: true,
+    // Try to play as soon as the site opens. If the browser blocks sound
+    // until the guest interacts, it starts on their first tap instead.
+    autoStart: true,
   },
 
   // Live address once deployed, e.g. 'https://<username>.github.io/<repo>/'.

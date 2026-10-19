@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLang } from '../lib/lang.js';
 
-// Optional background music. Never plays before a user gesture: it starts
-// when a guest taps the button or, with `startOnFirstTap`, on their first
-// tap/click/key anywhere on the page.
-export default function MusicPlayer({ src, startOnFirstTap = false }) {
+// Optional background music. With `autoStart` it tries to play as soon as the
+// page opens; browsers often refuse sound before a user gesture, so it then
+// starts on the guest's first tap/click/key anywhere on the page. The button
+// always toggles it.
+export default function MusicPlayer({ src, autoStart = false }) {
   const { t } = useLang();
   const m = t.music;
   const audioRef = useRef(null);
@@ -30,10 +31,11 @@ export default function MusicPlayer({ src, startOnFirstTap = false }) {
     };
   }, [m.failed]);
 
-  // First gesture anywhere starts the music once (taps on the music button
-  // itself are left to its own toggle).
+  // Try right away; if the browser blocks it, the first gesture anywhere
+  // starts it once (taps on the music button itself are left to its toggle).
   useEffect(() => {
-    if (!startOnFirstTap) return undefined;
+    if (!autoStart) return undefined;
+    audioRef.current.play().catch(() => {});
     const events = ['pointerup', 'touchend', 'keydown'];
     const stop = () => events.forEach((e) => window.removeEventListener(e, start, true));
     function start(e) {
@@ -47,7 +49,7 @@ export default function MusicPlayer({ src, startOnFirstTap = false }) {
     }
     events.forEach((e) => window.addEventListener(e, start, true));
     return stop;
-  }, [startOnFirstTap]);
+  }, [autoStart]);
 
   useEffect(() => {
     if (!message) return undefined;
@@ -82,7 +84,7 @@ export default function MusicPlayer({ src, startOnFirstTap = false }) {
 
   return (
     <div className="music">
-      <audio ref={audioRef} src={src} loop preload={startOnFirstTap ? 'auto' : 'none'} />
+      <audio ref={audioRef} src={src} loop preload={autoStart ? 'auto' : 'none'} />
       {message && <p className="music__msg" role="status">{message}</p>}
       <button
         type="button"
