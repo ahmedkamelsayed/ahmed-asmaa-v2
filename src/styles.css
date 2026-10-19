@@ -267,8 +267,8 @@ ul {
   background: url('./assets/cover-background.jpg') center / cover no-repeat, #ebe6de;
 }
 
-/* Wide screens: the whole artwork full-height in the middle, a soft blurred
-   copy of it filling the sides. */
+/* Wide screens: the whole artwork full-height in the middle, the same rug
+   tile as the rest of the page filling the sides. */
 @media (min-aspect-ratio: 3/4) {
   .cover::before,
   .cover::after {
@@ -278,15 +278,18 @@ ul {
   }
 
   .cover::before {
-    inset: -40px;
-    background: url('./assets/cover-background.jpg') center / cover no-repeat;
-    filter: blur(14px);
-    opacity: 0.55;
+    inset: 0;
+    background: url('./assets/rug-tile.jpg') center top / 570px auto repeat, #ece6dc;
   }
 
   .cover::after {
-    inset: 0;
-    background: url('./assets/cover-background.jpg') center / auto 100% no-repeat;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    aspect-ratio: 900 / 1600;
+    transform: translateX(-50%);
+    background: url('./assets/cover-background.jpg') center / 100% 100% no-repeat;
+    box-shadow: 0 0 28px rgba(91, 58, 44, 0.22);
   }
 }
 
