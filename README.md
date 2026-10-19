@@ -3,7 +3,7 @@
 Two versions of a one-page engagement invitation (Vite + React):
 
 - **Arabic** — `index.html` → https://ahmedkamelsayed.github.io/ahmed-asmaa-v2/
-- **English** — `en.html` → https://ahmedkamelsayed.github.io/ahmed-asmaa-v2/en.html
+- **English** — `en.html` → https://ahmedkamelsayed.github.io/ahmed-asmaa-v2/en
 
 Each page links to the other. The production build is prerendered to static
 HTML, so the invitation shows even without JavaScript.

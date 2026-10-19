@@ -24,7 +24,7 @@ function invitationMeta() {
         ['og:image:height', photo.height],
         ['og:image:alt', photoAlt],
         ['og:locale', lang === 'en' ? 'en_US' : 'ar_EG'],
-        ...(base ? [['og:url', base + (lang === 'en' ? 'en.html' : '')]] : []),
+        ...(base ? [['og:url', base + (lang === 'en' ? 'en' : '')]] : []),
       ].map(([p, v]) => `<meta property="${p}" content="${esc(v)}" />`);
       tags.push('<meta name="twitter:card" content="summary_large_image" />');
       return html

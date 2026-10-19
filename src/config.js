@@ -83,7 +83,7 @@ export const config = {
       closing: { line: 'وجودكم معانا هو أجمل هدية', withLove: 'مع كل الحب' },
       music: { play: 'موسيقى', pause: 'إيقاف', off: 'غير متاحة', playLabel: 'تشغيل الموسيقى', pauseLabel: 'إيقاف الموسيقى', blocked: 'المتصفح منع التشغيل، جرّب تاني', failed: 'الموسيقى غير متاحة حاليًا' },
       save: { button: 'احفظ الدعوة كصورة', working: 'جاري تجهيز الصورة…', failed: 'تعذّر حفظ الصورة، جرّب تاني', fileName: 'ahmed-asmaa-engagement-invitation-ar.png' },
-      switchTo: { label: 'English', href: 'en.html', lang: 'en' },
+      switchTo: { label: 'English', href: 'en', lang: 'en' },
     },
 
     en: {

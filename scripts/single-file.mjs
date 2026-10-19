@@ -66,7 +66,7 @@ for (const page of PAGES) {
   const [head, body] = html.split('</head>');
   html = `${head}</head>${await inlineMedia(body)}`;
   html = html.replace('href="./favicon.svg"', `href="${await dataUri(path.join(dist, 'favicon.svg'))}"`);
-  html = html.replace('href="en.html"', `href="${PAGES[1].out}"`).replace('href="./"', `href="${PAGES[0].out}"`);
+  html = html.replace('href="en"', `href="${PAGES[1].out}"`).replace('href="./"', `href="${PAGES[0].out}"`);
 
   await writeFile(path.join(outDir, page.out), html);
   console.log(`single-file/${page.out} (${(html.length / 1024).toFixed(0)} KB)`);
