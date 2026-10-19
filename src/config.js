@@ -31,16 +31,11 @@ export const config = {
   },
 
   // Saved invitation card ("Save Invitation" button).
-  // `art`: couple cut-out (transparent PNG) in public/images/, standing in the
-  // card's bottom-right corner; `artWidth` = its width in px on the 1080px card,
-  // `artTop` = where its top edge sits (px from the card's top, card is 1920 tall).
-  // `background`: the full illustration — its paper colour and flowers decorate
-  // the card. Set either to '' to leave it out.
+  // `background`: the cover artwork (9:16, Bismillah on top, hands with rings
+  // at the bottom) in public/images/; the card is laid out like the site's
+  // cover on top of it. Set to '' for a plain paper card.
   card: {
-    art: 'images/couple-cutout.png',
-    artWidth: 540,
-    artTop: 1100,
-    background: 'images/couple-illustration.jpg',
+    background: 'images/cover-artwork.jpg',
   },
 
   // Optional background music. Leave `src` empty to hide the music button.

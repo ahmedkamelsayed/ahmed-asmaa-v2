@@ -19,7 +19,7 @@ const MIME = { '.woff2': 'font/woff2', '.jpeg': 'image/jpeg', '.jpg': 'image/jpe
 const dataUri = async (file) =>
   `data:${MIME[path.extname(file).toLowerCase()]};base64,${(await readFile(file)).toString('base64')}`;
 
-const media = [config.photo.src, config.music.src, config.card.art, config.card.background].filter((p) => p && existsSync(path.join(dist, p)));
+const media = [config.photo.src, config.music.src, config.card.background].filter((p) => p && existsSync(path.join(dist, p)));
 const inlineMedia = async (text) => {
   for (const p of media) text = text.replaceAll(p, await dataUri(path.join(dist, p)));
   return text;
