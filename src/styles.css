@@ -75,7 +75,8 @@ html {
 
 body {
   margin: 0;
-  background: var(--ivory);
+  /* the carved rug field from the cover artwork, mirrored so it tiles seamlessly */
+  background: url('./assets/rug-tile.jpg') center top / 570px auto repeat, #ece6dc;
   color: var(--ink);
   font-family: var(--font-body);
   font-size: var(--body-size);
@@ -530,17 +531,29 @@ ul {
    Details
    ================================================================ */
 
-.details {
-  background: var(--cream);
+/* Section separator: a strip of the rug's carved floral border, sitting
+   across the line where one section meets the next. */
+main {
+  position: relative;
 }
 
-.details::before,
-.countdown::before {
+/* main::before = between the cover and the story (the story itself is
+   width-limited on large screens, main is full width) */
+main::before,
+main > .section:not(.story)::before,
+.closing::before {
   content: '';
   position: absolute;
+  z-index: 1;
   inset: 0 0 auto;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(179, 144, 98, 0.5), transparent);
+  height: 46px;
+  transform: translateY(-50%);
+  background: url('./assets/rug-band.jpg') center / auto 100% repeat-x;
+  border-block: 1px solid rgba(179, 144, 98, 0.45);
+  box-shadow:
+    0 8px 16px -10px rgba(91, 58, 44, 0.35),
+    0 -8px 16px -10px rgba(91, 58, 44, 0.35);
+  pointer-events: none;
 }
 
 .details__grid {
@@ -613,11 +626,6 @@ ul {
    Countdown
    ================================================================ */
 
-.countdown {
-  background:
-    radial-gradient(70% 60% at 50% 0%, rgba(246, 227, 222, 0.7), transparent 70%),
-    var(--ivory);
-}
 
 .countdown__grid {
   display: grid;
@@ -701,9 +709,6 @@ ul {
    Location
    ================================================================ */
 
-.location {
-  background: var(--cream);
-}
 
 .location__card {
   position: relative;
@@ -771,9 +776,6 @@ ul {
 
 .closing {
   padding-bottom: 7rem;
-  background:
-    radial-gradient(60% 50% at 50% 100%, rgba(235, 201, 195, 0.4), transparent 70%),
-    var(--ivory);
 }
 
 .closing__floral {
