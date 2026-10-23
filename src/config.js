@@ -42,7 +42,7 @@ export const config = {
   // To add music: put a licensed file in public/audio/ and set e.g.
   // src: 'audio/our-song.mp3'
   music: {
-    src: 'audio/ya-leila-beida.mp3',
+    src: '',
     // Try to play as soon as the site opens. If the browser blocks sound
     // until the guest interacts, it starts on their first tap instead.
     autoStart: true,
